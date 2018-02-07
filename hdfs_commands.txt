@@ -1,0 +1,21 @@
+-	Verify folders on HDFS 
+
+sudo -u hdfs hdfs dfs -ls /user/
+sudo hadoop fs –ls /user/
+
+-	Create a folders in HDFS
+
+sudo hadoop fs -mkdir /user/admin/finalproject
+sudo hadoop fs -mkdir /user/admin/finalproject/zip
+sudo hadoop fs -mkdir /user/admin/finalproject/providers
+
+-	Copy data file from azure cluster local file system to HDFS
+
+sudo hadoop fs -put free-zipcode-database-Primary.csv /user/admin/finalproject/zip
+
+sudo hadoop fs -put providers.csv /user/admin/finalproject/providers
+
+-	Verify data file has been copied to HDFS successfully 
+
+sudo hadoop fs -ls /user/admin/finalproject/zip
+sudo hadoop fs -ls /user/admin/finalproject/providers

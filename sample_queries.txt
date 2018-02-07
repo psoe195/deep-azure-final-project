@@ -1,0 +1,23 @@
+-	Find provider count by each state. Sort most provider states on the top. 
+
+SELECT pvd_bu_mailing_add_st_name, COUNT (*) total_providers
+    FROM providers
+GROUP BY pvd_bu_mailing_add_st_name
+ORDER BY total_providers DESC LIMIT 10;
+
+-	Find provider counts by Gender in California. 
+
+  SELECT pvd_gender_code, COUNT (*) total_providers
+    FROM providers
+   WHERE pvd_gender_code IN ('M', 'F') 
+   AND pvd_bu_mailing_add_st_name = 'CA'
+GROUP BY pvd_gender_code;
+
+-	Find to 10 cities with most provider counts
+
+SELECT  z.city, pvd_bu_mailing_add_st_name, COUNT (*) total_providers
+    FROM providers p
+         INNER JOIN zipcodes z ON (p.pvd_bu_mailing_add_postal_cd = z.zipcode)
+GROUP BY  z.city, pvd_bu_mailing_add_st_name
+ORDER BY total_providers DESC
+LIMIT 10;
